@@ -13,25 +13,27 @@
     <xacro:property name="rov1_height" value="0.28066"/>
 
     <xacro:macro name="rov1_hydro_model" params="namespace">
+
+
       <!-- List of hydrodynamic models this robot's links -->
       <link name="${namespace}/base_link">
         <!-- This flag will make the link neutrally buoyant -->
         <neutrally_buoyant>0</neutrally_buoyant>
 
         <!-- Link's volume -->
-        <volume>${rov1_volume}</volume>
+        <volume>0.011054</volume>
 
         <!-- Link's bounding box, it is used to recalculate the immersed
         volume when close to the surface.
         This is a workaround the invalid bounding box given by Gazebo-->
         <box>
-          <width>${rov1_width}</width>
-          <length>${rov1_length}</length>
-          <height>${rov1_height}</height>
+          <width>0.2384</width>
+          <length>0.448</length>
+          <height>0.28066</height>
         </box>
 
         <!-- Center of buoyancy -->
-        <center_of_buoyancy>${rov1_cob}</center_of_buoyancy>
+        <center_of_buoyancy>0 0 0</center_of_buoyancy>
 
         <!--
         Choose one of the hydrodynamic models below, all are based on
@@ -58,7 +60,7 @@
             or a full matrix (36 coefficients), like the added-mass coefficients above
           -->
           <linear_damping>
-            0 0 0 0 0 0
+              -11.7391 -20 -31.8678 -25 -44.9085 -5
           </linear_damping>
           <!--
             The linear damping coefficients proportional to the forward speed
@@ -101,10 +103,10 @@
 
         <!-- 2) This computes the added-mass and damping parameters for a sphere
         in the fluid with the given radius -->
-        <hydrodynamic_model>
+        <!-- <hydrodynamic_model>
           <type>sphere</type>
           <radius>0</radius>
-        </hydrodynamic_model>
+        </hydrodynamic_model> -->
 
       </link>
     </xacro:macro>
